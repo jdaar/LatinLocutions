@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == "development") app.use(morgan("tiny"));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  const q = req.query.q;
+  const q = Number(req.query.q) || 10;
   axios
     .get("https://es.wikipedia.org/wiki/Anexo:Locuciones_latinas")
     .then((r) => {
@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
         });
       });
       res.json({
-        locutions: locutions.slice(1, q),
+        locutions: locutions.slice(1, q + 1),
       });
     });
 });

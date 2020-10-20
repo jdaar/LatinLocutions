@@ -1,33 +1,47 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addLocution, favLocution, RootState } from './redux/store';
-import { ILocution } from './redux/types';
+import Axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import LocutionsList from "./components/LocutionsList";
+import { addLocution, favLocution, RootState } from "./redux/store";
+import { ILocution } from "./redux/types";
 
 function App() {
-  const locutions = useSelector((state: RootState) => state.locutions)
-  const dispatch = useDispatch()
+  const locutions = useSelector((state: RootState) => state.locutions);
+  const dispatch = useDispatch();
 
-  const newLoc: ILocution = {
-    locution: 'Alea jacta est',
-    meaning: 'La suerte esta echada',
-    fav: true
-  }
+  const [quantity, setQuantity] = useState(20);
+  useEffect(() => {
+    Axios.get(`http://localhost:8080?q=${quantity}`).then((res) => {
+      for (let x of res.data.locutions) {
+        let newLocution: ILocution = {
+          locution: x.locution,
+          meaning: x.meaning,
+          fav: false,
+        };
+        dispatch(addLocution(newLocution));
+      }
+    });
+  }, [dispatch, quantity]);
 
-  const add = useCallback(() => {
-    dispatch(addLocution(newLoc))
-  }, [dispatch, newLoc])
+  const addToQuantity = () => {
+    setQuantity(quantity + 10);
+  };
 
-  const fav = useCallback(() => {
-    dispatch(favLocution('Alea jacta est'))
-  }, [dispatch])
-
-  console.log(locutions)
   return (
     <div className="App">
-      <button onClick={add}>Alea jacta est</button>
-      {locutions.map((v, i) => 
-        <li key={i}>{v.locution} - {v.meaning} <input type="checkbox" checked={v.fav} onChange={fav}></input> </li>
-      )}
+      <nav className="navbar">
+        <h1>Locuciones latinas</h1>
+      </nav>
+      <LocutionsList addToQuantity={addToQuantity}></LocutionsList>
+      <div className="loader">Loading...</div>
+      <button onClick={addToQuantity}>Load more</button>
+      <footer>
+        <div className="open_saved">
+          <button id="open">
+            <i className="fas fa-list"></i>
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }

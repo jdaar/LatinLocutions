@@ -8,10 +8,10 @@ const locutions = createSlice({
   name: "locutions",
   initialState,
   reducers: {
-    addLocution: (state, action: PayloadAction<ILocution>) => [
-      ...state,
-      { ...action.payload },
-    ],
+    addLocution: (state, action: PayloadAction<ILocution>) =>
+      !state.find((v) => v.locution === action.payload.locution)
+        ? [...state, { ...action.payload }]
+        : state,
     favLocution: (state, action: PayloadAction<String>) =>
       state.map((v) =>
         v.locution === action.payload ? { ...v, fav: !v.fav } : v
