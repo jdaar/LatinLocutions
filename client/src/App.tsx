@@ -34,7 +34,6 @@ function App() {
         <h1>Locuciones latinas</h1>
       </nav>
       <LocutionsList addToQuantity={addToQuantity}></LocutionsList>
-      <button onClick={addToQuantity}>Load more</button>
       <footer id="open-wrapper">
         <div className="open_saved">
           <button

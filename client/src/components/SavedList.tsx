@@ -12,6 +12,7 @@ export default function () {
       <div className="title">
         <h2>Guardadas</h2>
         <button
+          className="close"
           onClick={(e) =>
             (document.getElementById("saved")!.style.top = "100%")
           }
@@ -19,7 +20,7 @@ export default function () {
           <i className="fas fa-times"></i>
         </button>
       </div>
-      <ul className=" locutions">
+      <ul className=" locutions full-w">
         {saved.map((v) => (
           <li className="container">
             <div className="text">

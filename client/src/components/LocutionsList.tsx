@@ -14,6 +14,9 @@ export default function ({ addToQuantity }: { addToQuantity: () => void }) {
 
   const scrollHandler = () => {
     let element: HTMLElement = document.getElementById("locutions")!;
+    console.log(`ScrollHeight: ${element.scrollHeight}`);
+    console.log(`ScrollTop: ${element.scrollTop}`);
+    console.log(`ClientHeight: ${element.clientHeight}`);
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       addToQuantity();
     }
