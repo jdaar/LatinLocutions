@@ -1,13 +1,12 @@
 import Axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import LocutionsList from "./components/LocutionsList";
 import SavedList from "./components/SavedList";
-import { addLocution, favLocution, RootState } from "./redux/store";
+import { addLocution } from "./redux/store";
 import { ILocution } from "./redux/types";
 
 function App() {
-  const locutions = useSelector((state: RootState) => state.locutions);
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(20);
@@ -22,7 +21,7 @@ function App() {
         dispatch(addLocution(newLocution));
       }
     });
-  }, [quantity]);
+  }, [quantity, dispatch]);
 
   const addToQuantity = () => {
     setQuantity(quantity + 10);

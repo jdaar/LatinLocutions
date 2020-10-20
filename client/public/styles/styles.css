@@ -84,11 +84,14 @@ body {
 
 .saved .title button {
   font-size: x-large;
-  padding: 1rem;
-  margin: 1rem;
   background: none;
   color: #e0e0e0;
   border: none;
+}
+
+.saved .buttons {
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .saved .container {
@@ -141,7 +144,7 @@ ul {
   position: absolute;
   height: 2px;
   border-top: 2px solid #27ae60;
-  top: 1.8rem;
+  top: 1.7rem;
   left: -2rem;
   width: 25px;
 }
@@ -151,7 +154,7 @@ ul {
   position: absolute;
   height: 2px;
   border-top: 2px solid #313131;
-  top: 1.8rem;
+  top: 1.7rem;
   left: -2rem;
   width: 25px;
 }
@@ -174,6 +177,12 @@ ul {
   color: #262626;
   background: none;
   border: none;
+}
+
+.container .heart button:hover {
+  transition: 0.2s;
+  color: #155531;
+  transform: scale(1.3);
 }
 
 .container .heart button i {
@@ -271,10 +280,34 @@ footer button {
 }
 
 @media (min-width: 750px) {
+  @keyframes savedWrapper {
+    from {
+      top: 100%;
+      opacity: 0;
+    }
+    to {
+      top: 4%;
+    }
+  }
+
   .saved {
     top: 4%;
     left: 60%;
     width: 40%;
+    animation: savedWrapper;
+    animation-duration: 2s;
+  }
+
+  @keyframes savedContainer {
+    from {
+      margin-top: 100px;
+      opacity: 0;
+    }
+  }
+
+  .saved .container {
+    animation: savedContainer;
+    animation-duration: 1s;
   }
 
   .saved .close {
@@ -300,4 +333,3 @@ footer button {
     display: none;
   }
 }
-/*# sourceMappingURL=styles.css.map */
