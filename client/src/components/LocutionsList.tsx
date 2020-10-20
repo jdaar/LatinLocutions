@@ -28,27 +28,29 @@ export default function ({ addToQuantity }: { addToQuantity: () => void }) {
       }}
     >
       <ul>
-        {locutions.length > 0 ? (
-          locutions.map((v) => (
-            <li className="container">
-              <div className="text">
-                <h4>{v.locution}</h4>
-                <p>{v.meaning}</p>
-              </div>
-              <div className="heart">
-                <button
-                  className={v.fav ? "checked" : ""}
-                  onClick={(e) => fav(v.locution)}
-                >
-                  <i className="fas fa-heart"></i>
-                </button>
-              </div>
-            </li>
-          ))
-        ) : (
-          <div className="loader">Loading...</div>
-        )}
+        {locutions.map((v) => (
+          <li className="container">
+            <div className="text">
+              <h4>{v.locution}</h4>
+              <p>{v.meaning}</p>
+            </div>
+            <div className="heart">
+              <button
+                className={v.fav ? "checked" : ""}
+                onClick={(e) => fav(v.locution)}
+              >
+                <i className="fas fa-heart"></i>
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
+      <div className="loader">
+        <div className="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
     </div>
   );
 }

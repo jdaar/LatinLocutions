@@ -21,7 +21,7 @@ function App() {
         dispatch(addLocution(newLocution));
       }
     });
-  }, [dispatch, quantity]);
+  }, [quantity]);
 
   const addToQuantity = () => {
     setQuantity(quantity + 10);
@@ -33,9 +33,8 @@ function App() {
         <h1>Locuciones latinas</h1>
       </nav>
       <LocutionsList addToQuantity={addToQuantity}></LocutionsList>
-      <div className="loader">Loading...</div>
       <button onClick={addToQuantity}>Load more</button>
-      <footer>
+      <footer id="open-wrapper">
         <div className="open_saved">
           <button id="open">
             <i className="fas fa-list"></i>
