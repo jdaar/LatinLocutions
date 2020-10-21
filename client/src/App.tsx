@@ -10,6 +10,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(20);
+
   useEffect(() => {
     Axios.get(`http://192.168.0.10:8080?q=${quantity}`).then((res) => {
       for (let x of res.data.locutions) {
@@ -37,7 +38,9 @@ function App() {
         <div className="open_saved">
           <button
             id="open"
-            onClick={(e) => (document.getElementById("saved")!.style.top = "0")}
+            onClick={(e) =>
+              (document.getElementById("saved")!.className += " toggled")
+            }
           >
             <i className="fas fa-list"></i>
           </button>

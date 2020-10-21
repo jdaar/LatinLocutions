@@ -243,6 +243,10 @@ footer button:hover {
   transform: scale(1.2);
 }
 
+.toggled {
+  top: 0;
+}
+
 .loader {
   display: flex;
   justify-content: center;

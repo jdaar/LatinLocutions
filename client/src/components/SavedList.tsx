@@ -42,7 +42,8 @@ export default function () {
           <button
             className="close"
             onClick={(e) => {
-              document.getElementById("saved")!.style.top = "100%";
+              let saved = document.getElementById("saved")!;
+              saved.className = saved.className.replace("toggled", "");
             }}
           >
             <i className="fas fa-times"></i>
