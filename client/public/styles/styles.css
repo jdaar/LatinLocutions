@@ -236,6 +236,11 @@ footer button {
   border-radius: 100%;
   -webkit-box-shadow: 0px 18px 19px #219653;
   box-shadow: 0px 18px 19px #219653;
+  transition: 0.2s;
+}
+
+footer button:hover {
+  transform: scale(1.2);
 }
 
 .loader {
