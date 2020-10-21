@@ -305,7 +305,7 @@ footer button {
     }
   }
 
-  .saved .container {
+  .container {
     animation: savedContainer;
     animation-duration: 1s;
   }

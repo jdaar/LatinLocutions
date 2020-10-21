@@ -15,7 +15,10 @@ export default function ({ addToQuantity }: { addToQuantity: () => void }) {
 
   const scrollHandler = () => {
     let element: HTMLElement = document.getElementById("locutions")!;
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    if (
+      element.scrollHeight - element.scrollTop - 3 - element.clientHeight <
+      -2
+    ) {
       addToQuantity();
     }
   };
