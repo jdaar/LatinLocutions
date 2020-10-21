@@ -12,16 +12,18 @@ function App() {
   const [quantity, setQuantity] = useState(20);
 
   useEffect(() => {
-    Axios.get(`http://192.168.0.10:8080?q=${quantity}`).then((res) => {
-      for (let x of res.data.locutions) {
-        let newLocution: ILocution = {
-          locution: x.locution,
-          meaning: x.meaning,
-          fav: false,
-        };
-        dispatch(addLocution(newLocution));
+    Axios.get(`https://young-bayou-84777.herokuapp.com/api?q=${quantity}`).then(
+      (res) => {
+        for (let x of res.data.locutions) {
+          let newLocution: ILocution = {
+            locution: x.locution,
+            meaning: x.meaning,
+            fav: false,
+          };
+          dispatch(addLocution(newLocution));
+        }
       }
-    });
+    );
   }, [quantity, dispatch]);
 
   const addToQuantity = () => {
